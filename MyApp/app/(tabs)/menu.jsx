@@ -26,10 +26,10 @@ export default function MenuScreen() {
                     ListFooterComponentStyle ={styles.footerComp}
                     ListEmptyComponent={<Text style={{color:'orange',margin:'auto'}}>No Items</Text>}
                     renderItem={({item}) => (
-                        <View style={{border:'1px solid orange'}}>
-                            <View >
-                                <Text style={styles.title}>{item.id}. {item.title}</Text>
-                                <Text style={{color:'orange',fontWeight:'bold'}}>{item.description}</Text>
+                        <View style={styles.row}>
+                            <View style={styles.menuTextrow}>
+                                <Text style={[styles.menuItemText,styles.menuItemtitle]}>{item.id}. {item.title}</Text>
+                                <Text style={styles.menuItemText}>{item.description}</Text>
                             </View>
                             <Image source={MENU_IMAGES[item.id -1]} style={styles.image}/>
                         </View>
@@ -48,8 +48,8 @@ function createStyles(theme, colorScheme) {
             backgroundColor:theme.background,
         },
         image: {
-            width:'300px',
-            height:'300px',
+            width:100,
+            height:100,
             flex:1,
             resizeMode:'cover',
             justifyContent:'center',
@@ -69,13 +69,35 @@ function createStyles(theme, colorScheme) {
         footerComp: {
             marginHorizontal:'auto'
         },
-        title: {
-            fontWeight:'bold',
-            fontSize:'20px',
+        menuItemtitle: {
+            fontSize:18,
+            textDecorationLine:'underline',
+
+        },
+        row: {
+            flexDirection:'row',
+            width:'100%',
+            maxWidth:600,
+            height:100,
             marginBottom:10,
-            justifyContent:'center',
-            display:'flex',
-            color:'orange'
+            borderStyle:'solid',
+            color: colorScheme === 'dark' ? Colors.dark : 'orange',
+            borderWidth:1,
+            borderRadius:20,
+            overflow:'hidden',
+            marginHorizontal:'auto'
+        },
+        menuTextrow : {
+            width:'65%',
+            paddingTop:10,
+            paddingLeft:10,
+            paddingRight:5,
+            flexGrow:1,
+        },
+        menuItemText : {
+            color:'orange',
+            fontWeight:'bold'
         }
+
            })
 }
